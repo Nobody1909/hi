@@ -1,0 +1,44 @@
+.separator {
+  float: left;
+  width: 2.5rem;
+  border-right: 1px solid rgb(202, 189, 189);
+  padding-bottom: 22rem; /* Key*/
+  margin-bottom: 1600px; /* Key*/
+}
+
+.wrapper p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: #2d2d2d;
+}
+
+.wrapper Label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2d2d2d;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px;
+
+  position: absolute;
+  width: 1600px;
+  height: 350px;
+  left: 32px;
+  top: 230px;
+  max-height: fit-content;
+
+  background: #ffffff;
+  box-shadow: 0px 1px 3px rgba(45, 45, 45, 0.2);
+  border-radius: 3px;
+  
+}
+.row {
+  display: table-row;
+}

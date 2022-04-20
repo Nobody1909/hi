@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Averta";
+  src: url("./fonts/AvertaDemo-Regular.otf");
+}
+.proDiv {
+  background: aliceblue;
+  margin: 2rem;
+}
+.main {
+  font-family: "Averta";
+  background: #e5e5e5;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  
+}
+
+.lab {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #696c74;
+}
+
+.head {
+  margin-top: 170px;
+  margin-left: 32px;
+  margin-bottom: 4px;
+}
+.head2 {
+  margin-left: 26px;
+
+  color: rgba(105, 108, 116, 1);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}

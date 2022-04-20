@@ -1,0 +1,26 @@
+.main2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px;
+  
+    position: absolute;
+    width: 1600px;
+    height: 70px;
+    left: 32px;
+    top: 650px;
+  
+    background: #ffffff;
+  
+    box-shadow: 0px 1px 3px rgba(45, 45, 45, 0.2);
+    border-radius: 3px;
+  }
+  
+  
+  .main2 p {
+    color: rgba(160, 165, 171, 1);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+  }

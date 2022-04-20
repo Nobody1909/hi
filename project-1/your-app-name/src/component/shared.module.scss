@@ -1,0 +1,307 @@
+@import "~@mbkit/theme/dist/theme.scss";
+
+// When using inline SVG (Checkbox component) some browsers
+// detect encoded and display the SVG with the correct color,
+// while others do not.
+// https://gist.github.com/certainlyakey/e9c0d8f5c87ff47e3d5b
+@function encodeHexColor($string) {
+  @if type-of($string) == "color" {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string: unquote("#{$hex}");
+  }
+  $string: "%23" + $string;
+  @return $string;
+}
+
+:export {
+  chartLines: $neutral-lighter;
+  fg: $foreground;
+  bg: $background;
+  tooltipBg: $neutral-darker;
+  tooltipFg: $neutral-lightest;
+  radius: $radius;
+}
+$chartLines: $neutral-lighter;
+$fg: $foreground;
+$bg: $background;
+$tooltipBg: $neutral-darker;
+$tooltipFg: $neutral-lightest;
+$radius: $radius;
+
+// Website container
+$container-max-width: 1600px;
+$container-min-width: 1366px;
+$container-width: 100%;
+$container-margin: auto;
+
+// Website font-size
+$font-size-xSmall: 12px;
+$font-size-small: 14px;
+$font-size-medium: 16px;
+$font-size-large: 18px;
+$font-size-xLarge: 20px;
+$font-size-xxLarge: 22px;
+$font-size-xxxLarge: 24px;
+
+// Website scroll
+$scroll-width: 24px;
+
+.outerContainer {
+    max-width: $container-max-width - $scroll-width;
+    min-width: $container-min-width - $scroll-width;
+    width: $container-width;
+    margin: 16px auto;
+    padding: 0px 32px;
+}
+
+.container {
+    max-width: $container-max-width - $scroll-width - 32px * 2;
+    min-width: $container-min-width - $scroll-width - 32px * 2;
+    width: $container-width;
+}
+
+.outerTableContainer {
+  @extend .container;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  margin: 32px auto;
+}
+
+.tableContainer {
+    @extend .container;
+    display: inline-block;
+    margin: 0px auto;
+    overflow: auto;
+    padding: 32px;
+}
+
+.filter {
+  display: block;
+  margin-bottom: 24px;
+}
+.divider {
+  margin: 24px 0;
+}
+.border {
+  border-bottom: 1px solid $neutral-light;
+}
+.dateLabel {
+  display: block;
+  font-size: $font-size-medium;
+}
+.grid5050 {
+  display: grid;
+  grid-template-columns: calc(50% - 4px) calc(50% - 4px);
+  grid-gap: 8px;
+}
+.header {
+  width: 1200px;
+  margin: 32px auto !important;
+  padding: 0 !important;
+}
+
+@mixin graphBarColor($color) {
+  [class*="recharts-bar-rectangle"] {
+    fill: $color;
+    stroke: $color;
+    fill-opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+@mixin loadSpinner($color, $background) {
+  $loadingSpeed: 650;
+
+  &,
+  &:before,
+  &:after {
+    border-radius: 50%;
+  }
+
+  color: $color;
+  font-size: 4px;
+  text-indent: -999px;
+  width: 18px;
+  height: 18px;
+  box-shadow: inset 0 0 0 1px;
+  transform: translate3d(-50%, -50%, 0) rotate(180deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 20px;
+    background: $background;
+    top: -1px;
+  }
+
+  &:before {
+    border-radius: 20px 0 0 20px;
+    left: -1px;
+    transform-origin: 11px 11px;
+    animation: spin #{$loadingSpeed}ms infinite ease #{$loadingSpeed * 0.75}ms;
+  }
+  &:after {
+    border-radius: 0 20px 20px 0;
+    left: 9px;
+    transform-origin: 0px 9px;
+    animation: spin #{$loadingSpeed}ms infinite ease;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+.loaderContainer {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  .loader {
+    @include loadSpinner($background, $secondary-base);
+  }
+}
+
+.generatingLoaderContainer {
+  $core-background: $background;
+
+  width: 100%;
+  height: 112px;
+  position: relative;
+  top: 50%;
+  background: $core-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    @include loadSpinner($neutral-dark, $core-background);
+    transform: scale(3.5);
+    position: absolute;
+    top: 46px;
+  }
+}
+
+.pageLoader {
+  width: 100px;
+  height: 100px;
+  margin: 250px auto;
+  position: relative;
+  transform: scale(4);
+
+  $core-background: #f9f9fa;
+  .loader {
+    @include loadSpinner($neutral-dark, $core-background);
+  }
+}
+
+.dataLoaderVeil {
+  position: fixed;
+  z-index: 99999999999999;
+  inset: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 11, 13, 0.7);
+
+  .dataLoader {
+    height: 112px;
+    width: 112px;
+    background-color: $background;
+
+    $core-background: $background;
+    .loader {
+        @include loadSpinner($neutral-dark, $core-background);
+        transform: scale(3.5);
+        position: relative;
+        top: 45px;
+        left: 45px;
+    }
+  }
+}
+
+.generatedReportsLoader {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  margin-left: 16px;
+  .loader {
+    @include loadSpinner($foreground, $background);
+  }
+  &.evenTableRow {
+    .loader {
+      @include loadSpinner($foreground, $background);
+    }
+  }
+}
+
+.tooltip {
+  background: $tooltipBg;
+  color: $tooltipFg;
+  border-radius: $radius;
+  padding: 8px;
+  max-width: 400px;
+  word-break: break-all;
+  hyphens: auto;
+}
+.tooltipLabel {
+  margin: 0 0 8px;
+}
+
+@keyframes flashNewRecord {
+  from {
+    background: $background;
+  }
+  to {
+    background: $warning-base !important;
+  }
+}
+
+.autoRenewRow td:nth-child(4) {
+  animation: flashNewRecord 500ms infinite ease-out alternate;
+  background: $warning-base !important;
+}
+
+.divLoader {
+  margin-top: 10px;
+}
+
+.divAutoRenew {
+  display: flex;
+}
+
+.vl {
+  border-right: 1px solid $neutral-light;
+  height: 25px !important;
+  margin-top: 11px;
+}
+
+.hyphenAuto {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.lineClamp_2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}

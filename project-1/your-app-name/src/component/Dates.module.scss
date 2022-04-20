@@ -1,0 +1,47 @@
+.first {
+  display: table-cell;
+  width: 24rem;
+}
+.first label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+.first p {
+  padding-left: 5.5px;
+}
+
+.first input {
+  background: url("../icon/calender.png") no-repeat left;
+  background-position: 12px;
+  background-size: 26px;
+  cursor: pointer;
+  padding-left: 3.2rem;
+  border: 1px solid #d5d9de;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #2d2d2d;
+
+  flex: none;
+  order: 2;
+  flex-grow: 1;
+  margin: 0px 10px;
+}
+
+.SDCalenderPopup {
+  position: absolute;
+  left: 37px;
+  top: 158px;
+  z-index: 9;
+}
+.EDCalenderPopup {
+  position: absolute;
+  left: 37px;
+  top: 243px;
+  z-index: 9;
+}

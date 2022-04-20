@@ -1,0 +1,97 @@
+{
+  "name": "your-app-name",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@commitlint/cli": "^8.3.6",
+    "@commitlint/config-conventional": "^8.3.6",
+    "@material-ui/core": "^4.12.4",
+    "@mbkit/button": "^1.4.5",
+    "@mbkit/calendar": "^1.4.5",
+    "@mbkit/checkbox": "^1.4.5",
+    "@mbkit/icon": "^1.4.5",
+    "@mbkit/input": "^1.4.5",
+    "@mbkit/label": "^1.4.5",
+    "@mbkit/select": "^1.5.5",
+    "@mbkit/typography": "^3.1.5",
+    "@storybook/addon-actions": "^5.3.21",
+    "@storybook/addon-knobs": "^5.3.21",
+    "@storybook/addon-links": "^5.3.21",
+    "@storybook/addons": "^5.3.22",
+    "@storybook/preset-create-react-app": "^1.5.2",
+    "@storybook/react": "^5.3.21",
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.20.47",
+    "@types/react": "^16.14.24",
+    "@types/nanoid": "^2.1.0",
+    "classnames": "^2.3.1",
+    "commitizen": "^4.2.4",
+    "cra-shared-ui-scripts": "^1.8.0",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "dateformat": "^5.0.3",
+    "jest-canvas-mock": "^2.3.1",
+    "jest-trx-results-processor": "^2.2.1",
+    "mkdirp": "^1.0.4",
+    "move-cli": "^1.2.1",
+    "nanoid": "^2.1.11",
+    "node-sass": "^4.14.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "5.0.0",
+    "react-select-search": "^3.0.9",
+    "standard-version": "^7.1.0",
+    "typescript": "^3.7.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "version:bump": "standard-version",
+    "build:ui": "yarn prep-shared-ui && react-scripts build && yarn finalize-shared-ui",
+    "test:ci": "cross-env CI=true react-scripts test --env=jsdom --reporters=default --reporters=jest-trx-results-processor",
+    "test:watch": "react-scripts test --env=jsdom",
+    "storybook": "start-storybook -p 9009 -s public",
+    "storybook:build": "build-storybook -s public",
+    "commit": "git-cz"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "!src/**/*.stories.tsx",
+      "!src/**/*.d.ts"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@types/dateformat": "^5.0.0",
+    "@types/react-dom": "^16.9.14"
+  }
+}
